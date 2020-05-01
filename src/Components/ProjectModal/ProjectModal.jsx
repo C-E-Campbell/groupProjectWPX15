@@ -215,9 +215,7 @@ class ProjectModal extends Component {
               />
               <textarea
                 placeholder="Project Description"
-                onChange={e =>
-                  this.setState({ project_description: e.target.value })
-                }
+                onChange={e => this.setState({ description: e.target.value })}
               ></textarea>
               <button>Upload Project</button>
             </form>
