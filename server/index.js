@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const massive = require("massive");
-const socketio = require("socket.io");
+// const socketio = require("socket.io");
 const profileCTRL = require("./profile_controller");
 const fileUpload = require("express-fileupload");
 
-// app.use(express.status(__dirname + "/../build"));
+app.use(express.static(`${__dirname}/../build`));
 
 app.use(fileUpload());
 app.use(express.json());
@@ -30,8 +30,7 @@ const {
   addFeedback,
   editFeedback,
   deleteFeedback,
-  getAllFeedback,
-  getProfilePhoto
+  getAllFeedback
 } = require("./projects_controller");
 
 const {
@@ -66,7 +65,7 @@ massive(CONNECTION_STRING).then(db => {
 
 app.post("/auth/register", register);
 app.post("/auth/login", login);
-//app.post("/auth/checkcache", checkCache);
+app.post("/auth/checkcache", checkCache);
 app.post("/auth/imageupload/:id", profileCTRL.imgUpload);
 app.delete("/auth/logout", logout);
 app.get("/auth/getAllProjects", getAllProjects);
@@ -101,10 +100,16 @@ const expressServer = app.listen(port, () =>
   console.log(`up and running on port ${port}`)
 );
 
-const io = socketio(expressServer);
+// const io = socketio(expressServer);
 
-io.on("connection", socket => {
-  socket.on("message", message => {
-    io.emit("newMessage", message);
-  });
+// io.on("connection", socket => {
+//   socket.on("message", message => {
+//     io.emit("newMessage", message);
+//   });
+// });
+
+const path = require("path");
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
 });

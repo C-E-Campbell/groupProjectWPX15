@@ -30,12 +30,12 @@ const ImageUploader = props => {
     fd.append("file", file);
 
     try {
-      await axios.post(`/auth/imageupload/${props.id}`, fd, {
+      const result = await axios.post(`/auth/imageupload/${props.id}`, fd, {
         headers: {
           "content-type": "multipart/form-data"
         }
       });
-      props.getPhoto();
+      props.getPhoto(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +61,7 @@ const ImageUploader = props => {
       >
         <i ref={plus} className="fas fa-plus fa-lg"></i>
       </div>
-      {props.pic === null || props.pic === undefined ? (
+      {props.pic === "" || props.pic === undefined ? (
         <img
           onClick={pickImageHandler}
           ref={img}

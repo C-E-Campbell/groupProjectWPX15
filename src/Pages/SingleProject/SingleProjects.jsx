@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./SingleProject.style.scss";
 import CommentSidebar from "../../Components/CommentSidebar/CommentSidebar";
-import logo from "../../Assets/defaultUser.png";
 import MainContent from "../../Components/MainContent/MainContent";
 import { withRouter } from "react-router-dom";
 

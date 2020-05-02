@@ -3,8 +3,8 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 import MainContent from "../../Components/MainContent/MainContent";
 import "./Chat.style.scss";
 import ChatMessage from "../../Components/ChatMessage/ChatMessage";
-import io from "socket.io-client";
-let socket = io.connect("http://localhost:4001");
+// import io from "socket.io-client";
+// let socket = io.connect("http://localhost:4001");
 
 class Chat extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Chat extends React.Component {
 
   sendChat = (e, message) => {
     e.preventDefault();
-    socket.emit("message", message);
+    // socket.emit("message", message);
     this.setState({ message: "" });
   };
 

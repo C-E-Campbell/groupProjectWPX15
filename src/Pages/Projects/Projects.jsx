@@ -80,7 +80,7 @@ class Projects extends Component {
         })
 
         .map(project => {
-          return <Project all={project} />;
+          return <Project key={project.project_id} all={project} />;
         });
     } else {
       this.resetData();

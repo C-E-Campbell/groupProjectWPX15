@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import ImageUploader from "../ImageUploader/ImageUploader";
 import "./Project.style.scss";
 
 function Project(props) {

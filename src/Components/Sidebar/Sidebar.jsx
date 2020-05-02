@@ -40,11 +40,11 @@ class Sidebar extends Component {
           </Link>
         </div>
         <ul className="sidebar-ul">
-          <ImageUploader
-            getPhoto={this.props.getPhoto}
+          {/* <ImageUploader
+            getPhoto={this.getProfilePhoto}
             pic={this.state.profileImg}
             id={this.props.loggedUser.id}
-          />
+          /> */}
           {!this.props.showHomeBtn ? (
             <input
               placeholder="Seach Developers"
@@ -72,7 +72,7 @@ class Sidebar extends Component {
               <li>Your Profile</li>
             </Link>
           )}
-
+          {/* 
           <Link
             to="/chat"
             className="sidebar-link"
@@ -91,7 +91,7 @@ class Sidebar extends Component {
             data-aos-easing="ease-in"
           >
             <li>Campus Stats</li>
-          </Link>
+          </Link> */}
           <Link
             to="/help"
             className="sidebar-link"
@@ -129,7 +129,7 @@ class Sidebar extends Component {
                 >
                   <li>Profile</li>
                 </Link>
-                <Link
+                {/* <Link
                   to="/chat"
                   className="ham"
                   data-aos="fade-right"
@@ -137,8 +137,8 @@ class Sidebar extends Component {
                   data-aos-easing="ease-in"
                 >
                   <li>codeTalk</li>
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                   to="/Chart"
                   className="ham"
                   data-aos="fade-right"
@@ -146,7 +146,7 @@ class Sidebar extends Component {
                   data-aos-easing="ease-in"
                 >
                   <li>Campus Stats</li>
-                </Link>
+                </Link> */}
                 <Link
                   to="/help"
                   className="ham"

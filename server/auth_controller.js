@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
-// const redis = require("redis");
-// const client = redis.createClient(6379);
+const redis = require("redis");
+const client = redis.createClient(6379);
 
 module.exports = {
   register: async (req, res, next) => {
@@ -13,7 +13,7 @@ module.exports = {
       const saltRounds = 12;
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
-      const [newUser] = await db.create_user([
+      const newUser = await db.create_user([
         first,
         last,
         email,
@@ -21,8 +21,14 @@ module.exports = {
         campus,
         status
       ]);
-      req.session.user = newUser;
-      console.log(req.session.user);
+
+      req.session.user = req.session.user = {
+        id: newUser[0].user_id,
+        email: newUser[0].email,
+        first: newUser[0].first,
+        last: newUser[0].last
+      };
+
       res.status(200).send(req.session.user);
     }
   },
@@ -37,7 +43,7 @@ module.exports = {
           .status(401)
           .send("Cant find that account. You may need to register");
       } else {
-        //client.set(`${email}:password`, password); // store session instead
+        client.set(`${email}:password`, password); // store session instead
         let checkPass = bcrypt.compareSync(password, checkForUser[0].password);
         if (checkPass) {
           req.session.user = {
@@ -69,16 +75,16 @@ module.exports = {
     const { id } = req.params;
     const result = await db.get_campus_email([+id]);
     return res.status(200).send(result);
-  }
-  // checkCache: (req, res, next) => {
-  //   const { email } = req.body;
+  },
+  checkCache: (req, res, next) => {
+    const { email } = req.body;
 
-  //   if (client.get(`${email}:password`)) {
-  //     client.get(`${email}:password`, (err, data) => {
-  //       res.send(data);
-  //     });
-  //   } else {
-  //     res.send("no cache");
-  //   }
-  // }
+    if (client.get(`${email}:password`)) {
+      client.get(`${email}:password`, (err, data) => {
+        res.send(data);
+      });
+    } else {
+      res.send("no cache");
+    }
+  }
 };

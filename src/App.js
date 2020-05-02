@@ -11,8 +11,8 @@ import MyProvider from "./Components/MyProvider/MyProvider.jsx";
 import axios from "axios";
 import Chart from "./Chart/Chart";
 import Chat from "./Pages/Chat/Chat.jsx";
-import io from "socket.io-client";
-let socket = io.connect("http://localhost:4001");
+// import io from "socket.io-client";
+// let socket = io.connect("http://localhost:4001");
 
 class App extends React.Component {
   constructor(props) {
@@ -43,11 +43,11 @@ class App extends React.Component {
   componentDidMount() {
     this.getAllNames();
 
-    socket.on("newMessage", msg => {
-      let chat = this.state.chatArr;
-      chat = [...chat, msg];
-      this.setState({ chatArr: chat });
-    });
+    // socket.on("newMessage", msg => {
+    //   let chat = this.state.chatArr;
+    //   chat = [...chat, msg];
+    //   this.setState({ chatArr: chat });
+    // });
   }
 
   render() {

@@ -49,6 +49,9 @@ class ProjectModal extends Component {
       otherTechs
     } = this.state;
     const { id, first, last } = this.props.id;
+    if (!github.includes("http") || !thumbnail.includes("http")) {
+      alert("Please add the full URL including http://");
+    }
 
     await axios.post("/auth/addProject", {
       id,
@@ -108,12 +111,12 @@ class ProjectModal extends Component {
               />
               <input
                 className="project-modal-input"
-                placeholder="Site Thumbnail"
+                placeholder="Site Thumbnail: https://thumbnail url (optional but recommended)"
                 onChange={e => this.setState({ thumbnail: e.target.value })}
               />
               <input
                 className="project-modal-input"
-                placeholder="Url: Typed 'https://(yoursite)'Optional"
+                placeholder={`URL: https:// (www.yoursite.com)`}
                 onChange={e => this.setState({ host_url: e.target.value })}
               />
               <input
