@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import logo from "../../Assets/smallLogo.png";
 import axios from "axios";
-import ImageUploader from "../ImageUploader/ImageUploader";
+// import ImageUploader from "../ImageUploader/ImageUploader";
 import "./Sidebar.style.scss";
 import { MyContext } from "../MyProvider/MyProvider";
 
@@ -51,10 +51,10 @@ class Sidebar extends Component {
               onChange={e => this.props.found(e.target.value)}
             />
           ) : (
-            <Link to="/projects" className="back-to-projects-btn">
-              Back To Projects
+              <Link to="/projects" className="back-to-projects-btn">
+                Back To Projects
             </Link>
-          )}
+            )}
 
           <Link to="/projectUpload" className="sidebar-link">
             <div className="upload-btn">
@@ -116,10 +116,10 @@ class Sidebar extends Component {
                     onChange={e => this.props.found(e.target.value)}
                   />
                 ) : (
-                  <Link to="/projects" className="back-to-projects-btn">
-                    Back To Projects
+                    <Link to="/projects" className="back-to-projects-btn">
+                      Back To Projects
                   </Link>
-                )}
+                  )}
                 <Link
                   to={`/profile/{this.props.loggedUser.id}`}
                   className="ham"

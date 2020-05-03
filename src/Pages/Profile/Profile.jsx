@@ -6,7 +6,7 @@ import Project from "../../Components/ProfileProject/ProfileProject";
 import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import MainContent from "../../Components/MainContent/MainContent";
-import DefaultPic from "./defaultUser.png";
+// import DefaultPic from "./defaultUser.png";
 
 class Profile extends Component {
   constructor(props) {
@@ -78,10 +78,10 @@ class Profile extends Component {
               {!this.state.profileData.linkedin ? (
                 <></>
               ) : (
-                <a target="target_blank" href={this.state.profileData.linkedin}>
-                  <i className="fab fa-linkedin"></i>
-                </a>
-              )}
+                  <a target="target_blank" href={this.state.profileData.linkedin}>
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                )}
               {/* </div> */}
             </div>
             <div className="profile-projects-container">
